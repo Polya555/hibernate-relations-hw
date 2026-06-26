@@ -16,7 +16,7 @@ public class Actor implements Cloneable {
     private String name;
     @ManyToOne
     private Country country;
-    @ManyToMany
+    @ManyToMany(mappedBy = "actors")
     private List<Movie> movies;
 
     public Actor() {
