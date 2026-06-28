@@ -28,7 +28,7 @@ public abstract class AbstractDao<EntityT> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't add " + entity);
+            throw new DataProcessingException("Can't add " + entity, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -40,7 +40,7 @@ public abstract class AbstractDao<EntityT> {
         try (Session session = factory.openSession()) {
             return Optional.ofNullable(session.get(entityClass, id));
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get entity by id: " + id);
+            throw new DataProcessingException("Can't get entity by id: " + id, e);
         }
     }
 }
